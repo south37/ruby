@@ -1510,7 +1510,6 @@ RUBY_CHECK_SIZEOF(short)
 RUBY_CHECK_SIZEOF(long, [int], [ILP LP])
 RUBY_CHECK_SIZEOF(long long)
 RUBY_CHECK_SIZEOF(__int64, [8], [ILP LP])
-RUBY_CHECK_SIZEOF(__int128, [16], [ILP LP])
 RUBY_CHECK_SIZEOF(off_t)
 RUBY_CHECK_SIZEOF(void*, [int long "long long"], [ILP LP LLP])
 RUBY_CHECK_SIZEOF(float)
@@ -2099,7 +2098,6 @@ typedef $1 t; int s = sizeof(t) == 42;])],
     ["$ac_cv_sizeof_long"], [ rb_cv_type_$1="m4_if([$3], [], [], [$3 ])long"],
     ["$ac_cv_sizeof_long_long"], [ rb_cv_type_$1="m4_if([$3], [], [], [$3 ])long long"],
     ["${ac_cv_sizeof___int64@%:@*:}"], [ rb_cv_type_$1="m4_if([$3], [], [], [$3 ])__int64"],
-    ["${ac_cv_sizeof___int128@%:@*:}"], [ rb_cv_type_$1="m4_if([$3], [], [], [$3 ])__int128"],
     [ rb_cv_type_$1=no])])])
 AS_IF([test "${rb_cv_type_$1}" != no], [
     type="${rb_cv_type_$1@%:@@%:@unsigned }"
