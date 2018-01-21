@@ -1059,16 +1059,6 @@ VALUE rb_ary_aref1(VALUE ary, VALUE i);
 VALUE rb_ary_aref2(VALUE ary, VALUE b, VALUE e);
 size_t rb_ary_memsize(VALUE);
 VALUE rb_to_array_type(VALUE obj);
-#if defined(__GNUC__) && defined(HAVE_VA_ARGS_MACRO)
-#define rb_ary_new_from_args(n, ...) \
-    __extension__ ({ \
-	const VALUE args_to_new_ary[] = {__VA_ARGS__}; \
-	if (__builtin_constant_p(n)) { \
-	    STATIC_ASSERT(rb_ary_new_from_args, numberof(args_to_new_ary) == (n)); \
-	} \
-	rb_ary_new_from_values(numberof(args_to_new_ary), args_to_new_ary); \
-    })
-#endif
 
 /* bignum.c */
 extern const char ruby_digitmap[];
