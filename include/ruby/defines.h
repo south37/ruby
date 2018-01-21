@@ -101,7 +101,7 @@ extern "C" {
 #define RB_GNUC_EXTENSION_BLOCK(x) __extension__ ({ x; })
 #else
 #define RB_GNUC_EXTENSION
-#define RB_GNUC_EXTENSION_BLOCK(x) (x)
+#define RB_GNUC_EXTENSION_BLOCK(x) ({ x; })
 #endif
 
 /* AC_INCLUDES_DEFAULT */
