@@ -925,13 +925,6 @@ AS_IF([test "$GCC" = yes], [
 	RUBY_TRY_CFLAGS(-fvisibility=hidden, [visibility_option=yes], [visibility_option=no])
     ])
     AC_SUBST(WERRORFLAG, "-Werror")
-    AS_IF([test "$visibility_option" = yes], [
-	RUBY_APPEND_OPTION(XCFLAGS, -fvisibility=hidden)
-	AC_DEFINE(RUBY_SYMBOL_EXPORT_BEGIN, [_Pragma("GCC visibility push(default)")])
-	AC_DEFINE(RUBY_SYMBOL_EXPORT_END,   [_Pragma("GCC visibility pop")])
-    ], [
-	RUBY_TRY_LDFLAGS([-Wl,-unexported_symbol,_Init_*], [visibility_option=ld], [visibility_option=no])
-    ])
     test "$visibility_option" = no || OBJCOPY=:
 ])
 
