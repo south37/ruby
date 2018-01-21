@@ -229,6 +229,18 @@ void xfree(void*);
 #undef _WIN32
 #endif
 
+// Define FALSE and TRUE
+#ifndef FALSE
+# define FALSE 0
+#elif FALSE
+# error FALSE must be false
+#endif
+#ifndef TRUE
+# define TRUE 1
+#elif !TRUE
+# error TRUE must be true
+#endif
+
 #if defined(_WIN32)
 /*
   DOSISH mean MS-Windows style filesystem.
@@ -240,29 +252,18 @@ void xfree(void*);
 #endif
 
 #ifdef AC_APPLE_UNIVERSAL_BUILD
-#undef WORDS_BIGENDIAN
-#ifdef __BIG_ENDIAN__
-#define WORDS_BIGENDIAN
-#endif
+# undef WORDS_BIGENDIAN
+# ifdef __BIG_ENDIAN__
+#  define WORDS_BIGENDIAN
+# endif
 #endif
 
 #ifdef _WIN32
-#include "ruby/win32.h"
+# include "ruby/win32.h"
 #endif
 
 #ifdef RUBY_EXPORT
 #undef RUBY_EXTERN
-
-#ifndef FALSE
-# define FALSE 0
-#elif FALSE
-# error FALSE must be false
-#endif
-#ifndef TRUE
-# define TRUE 1
-#elif !TRUE
-# error TRUE must be true
-#endif
 
 #endif
 
